@@ -42,8 +42,8 @@ ul {
 .container {
 width: 85%;
  margin: 0 auto;
-  display: flex;
 background: #f6f6ef;
+    margin-top: 1rem;
 }
 
 </style>
