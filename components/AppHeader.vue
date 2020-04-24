@@ -2,7 +2,7 @@
     <header class="header">
         <ul>
             <li>
-                <nuxt-link to='/'><img src="~assets/images/y18.gif" alt="logo" style="border:1px solid #fff;"/></nuxt-link>
+                <nuxt-link to='/'><img src="~static/images/y18.gif" alt="logo" style="border:1px solid #fff;"/></nuxt-link>
             </li>
             <li>
                 <nuxt-link to='/'><b>Hacker News</b></nuxt-link>

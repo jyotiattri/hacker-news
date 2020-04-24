@@ -15,6 +15,7 @@
                 <span>{{hacker.user}}</span>
                 <span>{{hacker.time_ago}}</span> |
                 <span>{{hacker.comments_count}}</span>
+                <span>comments</span>
             </div>
             </nuxt-link>
             </li>
@@ -41,7 +42,7 @@ export default {
     height: 10px;
     border: 0px;
     margin: 3px 2px 6px;
-    background: url("~assets/images/grayarrow.gif") no-repeat;
+    background: url("~static/images/grayarrow.gif") no-repeat;
     position: absolute;
 }
 span {
