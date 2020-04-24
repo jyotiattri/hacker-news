@@ -1,21 +1,47 @@
 <template>
   <div>
-    
+    <Hacker v-for="(item, index) in hackers" :key="item.id" :index="index + 1"  :hacker="item" />
   </div>
 </template>
 
 <script>
-
+import Hacker from '../components/Hacker';
+import axios from 'axios'
 export default {
-  head () {
+  components: {
+    Hacker
+  },
+  data() {
+    return {
+      hackers: []
+    }
+  },
+  async created() {
+    const config = {
+      headers: {
+        Accept: 'application/json'
+      }
+    }
+    try {
+      const res = await this.$axios.get(
+        'https://api.hackerwebapp.com/news?page=1',
+        config
+      )
+    console.log(res)
+      this.hackers = res.data
+    } catch (err) {
+      console.log(err)
+    }
+  },
+
+  head() {
     return {
       title: 'Hacker News',
       meta: [
         {
           hid: 'description',
           name: 'description',
-          content: 'News about Hacking and making'
-
+          content: 'Hacker News'
         }
       ]
     }
@@ -24,26 +50,4 @@ export default {
 </script>
 
 <style>
-
-.title {
-  font-family: 'Quicksand', 'Source Sans Pro', -apple-system, BlinkMacSystemFont,
-    'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-  display: block;
-  font-weight: 300;
-  font-size: 100px;
-  color: #35495e;
-  letter-spacing: 1px;
-}
-
-.subtitle {
-  font-weight: 300;
-  font-size: 42px;
-  color: #526488;
-  word-spacing: 5px;
-  padding-bottom: 15px;
-}
-
-.links {
-  padding-top: 15px;
-}
 </style>

@@ -2,10 +2,10 @@
     <header class="header">
         <ul>
             <li>
-                <nuxt-link to='/hackers'><img src="~assets/images/y18.gif" alt="logo" style="border:1px solid #fff;"/></nuxt-link>
+                <nuxt-link to='/'><img src="~assets/images/y18.gif" alt="logo" style="border:1px solid #fff;"/></nuxt-link>
             </li>
             <li>
-                <nuxt-link to='/hackers'><b>Hacker News</b></nuxt-link>
+                <nuxt-link to='/'><b>Hacker News</b></nuxt-link>
             </li>
              <li>
                 <nuxt-link to='/news'>News</nuxt-link>|

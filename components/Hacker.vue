@@ -45,6 +45,11 @@ export default {
     position: absolute;
 }
 span {
-    margin-left: 20px;
+    font-size: 12px;
+    color: #999;
+}
+span.title {
+    font-size: 14px;
+    color: #000;
 }
 </style>
