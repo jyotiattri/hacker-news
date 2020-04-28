@@ -1,67 +1,61 @@
 <template>
-    <div class="item-view view">
-        <div class="item-view-header">
-
-            <template v-if="isAbsolute(item.url)">
-                <a :href="item.url" target="_blank" rel="noopener">
-                    <h1 v-text="item.title"/> </a>
-                    <span class="host"> ({{ item.url | host }})</span>
-            </template>
-            <template v-else>
-                <h1 v-text="item.title"/>
-            </template>
-            <p class="meta">
-                {{ item.points }} points | by
-                <router-link :to="'/user/' + item.user">
-                {{ item.user }}
-                </router-link>
-                {{ item.time | timeAgo }} timeAgo
-                </p>
-        </div>
-        <div class="item-view-comments">
-            <lazy-wrapper :loading="item.loading">
-                <p class="item-view-comments-header">
-                    {{ item.comments ? item.comments.length + 'comments' : 'No comments yet.'}}
-                    </p>
-                    <ul class="comment-children">
-                        <comment v-for="comment in item.comments" :key="comment.id" :comment="comment"/>
-                    </ul>
-            </lazy-wrapper>
+  <div class="item-view view">
+    <div class="item-view-header">
+      <template v-if="isAbsolute(item.url)">
+        <a :href="item.url" target="_blank" rel="noopener"><h1 v-text="item.title" /></a>
+        <span class="host"> ({{ item.url | host }})</span>
+      </template>
+      <template v-else>
+        <h1 v-text="item.title" />
+      </template>
+      <p class="meta">
+        {{ item.points }} points | by
+        <router-link :to="'/user/' + item.user">
+          {{ item.user }}
+        </router-link>
+        {{ item.time | timeAgo }} ago
+      </p>
     </div>
+    <div class="item-view-comments">
+      <lazy-wrapper :loading="item.loading">
+        <p class="item-view-comments-header">
+          {{ item.comments ? item.comments.length + ' comments' : 'No comments yet.' }}
+        </p>
+        <ul class="comment-children">
+          <comment v-for="comment in item.comments" :key="comment.id" :comment="comment" />
+        </ul>
+      </lazy-wrapper>
     </div>
+  </div>
 </template>
-
 
 <script>
 import Comment from '~/components/Comment'
 import LazyWrapper from '~/components/LazyWrapper'
-
 export default {
   name: 'ItemView',
   components: { Comment, LazyWrapper },
-
-head() {
-   return {
-       title: this.item.title
-   }  
-},
-
-computed: {
-    id() {
-        return this.$route.params.id
+  head () {
+    return {
+      title: this.item.title
+    }
+  },
+  computed: {
+    id () {
+      return this.$route.params.id
     },
     item () {
-        return this.$store.state.items[this.id]
+      return this.$store.state.items[this.id]
     }
-},
-fetch ({ store,params: { id } }) {
+  },
+  fetch ({ store, params: { id } }) {
     return store.dispatch('FETCH_ITEM', { id })
-},
-methods: {
-    isAbsolute (url) { 
-    return /^https?:\/\//.test(url)
-}
-}
+  },
+  methods: {
+    isAbsolute (url) {
+      return /^https?:\/\//.test(url)
+    }
+  }
 }
 </script>
 
